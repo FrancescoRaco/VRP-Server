@@ -65,7 +65,7 @@ public class Server extends Thread
     protected Server(Socket socket, GeographicMap map)
 	{
 		//Initialize fields
-    	this.socket = socket;
+    	        this.socket = socket;
 		this.map = map;
 		vrpTypesMap.put("ShowSolution", false);
 		vrpTypesMap.put("ShowTestSolution", false);
@@ -89,7 +89,7 @@ public class Server extends Thread
     public void run()
 	{
 		//Initialize input and output streams + buffered reader (for input streams reading)
-    	InputStream in = null;
+    	        InputStream in = null;
 		PrintWriter out = null;
 		BufferedReader br = null;
 		
@@ -103,13 +103,13 @@ public class Server extends Thread
 			br = new BufferedReader(new InputStreamReader(in));
 			
 			//Log a message object with debug
-	        log.debug("Connection established");
+	                log.debug("Connection established");
 			
 			//Initialize query String Builder
-	        StringBuilder query = new StringBuilder();
+	                StringBuilder query = new StringBuilder();
 			
 			//Read client data until receiving "END" string
-	        String stop;
+	                String stop;
 			while ((stop = br.readLine()) != null && !stop.equals("END"))
 			{
 				//If client asks for a specific output value regarding bus vrp, update
@@ -152,7 +152,7 @@ public class Server extends Thread
 				//get appropriate solution ("ShowSolution" or "ShowTestSolution")
 				if (vrpTypesMap.get("ShowSolution")) solution = Test.getJspritAlgorithmSolutionInfo(map, bus);
 				else if (vrpTypesMap.get("ShowTestSolution")) solution = Test.getJspritAlgorithmTestingInfo(map, bus);
-	        }
+	                }
 			
 			//If client did not ask for a specific output provided by the server,
 			//then tell him an appropriate message
@@ -161,7 +161,7 @@ public class Server extends Thread
 				out.println("Non hai specificato una tipologia di richiesta valida!");
 			}
 	        
-	        //If solution is non null, then send it to the client
+	                //If solution is non null, then send it to the client
 			if (solution != null) out.println(solution);
 		}
 		
@@ -226,7 +226,7 @@ public class Server extends Thread
 	 * @param args Args
 	 */
     public static void main(String[] args)
-	{
+    {
 		//Initialize server
     	ServerSocket server = null;
     	
@@ -235,32 +235,31 @@ public class Server extends Thread
 		
     	//Endlessly listen for a Client connection on the port number chosen
     	try
+        {
+		server = new ServerSocket(PORT_NUMBER);
+		while (true)
 		{
-			server = new ServerSocket(PORT_NUMBER);
-			while (true)
-			{
-				Socket socket = server.accept();
+			Socket socket = server.accept();
 				
-				if (socket != null) new Server(socket, map);
-			}
+			if (socket != null) new Server(socket, map);
 		}
+	}
 		
     	//Handle exceptions and finally close the server
     	catch (IOException ex)
+	{
+		System.out.println("Impossibile eseguire il server!");
+	}
+	finally
+	{
+		try
 		{
-			System.out.println("Impossibile eseguire il server!");
+			if (server != null) server.close();
 		}
-		finally
+		catch (IOException ex)
 		{
-			try
-			{
-				if (server != null)
-					server.close();
-			}
-			catch (IOException ex)
-			{
-				ex.printStackTrace();
-			}
+			ex.printStackTrace();
 		}
 	}
+    }
 }
