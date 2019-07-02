@@ -119,7 +119,9 @@ public class Server extends Thread
 				{
 					if (stop.equals(outputType))
 					{
-						vrpTypesMap.put(outputType, true);
+						//If this outputType has not requested yet from the server,
+						//then set as true its corresponding boolean value
+						if (!vrpTypesMap.get(outputType)) vrpTypesMap.put(outputType, true);
 						isType = true;
 					}
 				}
