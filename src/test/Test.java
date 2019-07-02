@@ -17,17 +17,17 @@ import test.busExamples.Bus30Rome;
  */
 public class Test
 {
-	/**
+    /**
      * Test Jsprit algorithm comparing its result with the stops order calculated by
      * transport service provider and its path distance with provider path distance
      * @param map Geographic Map
      * @param bus Bus
      * @return StopsTester object containing useful methods for the comparison
-	 * @throws PathNotFoundException Path Not Found Exception
-	 * @throws NotExistingCoordinatesException Not Existing Coordinates Exception
-	 * @throws UncorrectQueryException Uncorrect Query Exception
-	 * @throws NoInstructionsFoundException No Instructions Found Exception
-	 * @throws NoStopsFoundException 
+     * @throws PathNotFoundException Path Not Found Exception
+     * @throws NotExistingCoordinatesException Not Existing Coordinates Exception
+     * @throws UncorrectQueryException Uncorrect Query Exception
+     * @throws NoInstructionsFoundException No Instructions Found Exception
+     * @throws NoStopsFoundException 
      */
     private static StopsTester testJspritAlgorithm(GeographicMap map, Bus bus) throws UncorrectQueryException, NotExistingCoordinatesException, PathNotFoundException, NoStopsFoundException, NoInstructionsFoundException
     {
