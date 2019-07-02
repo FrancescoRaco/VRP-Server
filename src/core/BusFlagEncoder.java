@@ -22,7 +22,7 @@ public class BusFlagEncoder extends CarFlagEncoder
                 (int) properties.getLong("speed_bits", 5),
                 properties.getDouble("speed_factor", 5),
                 properties.getBool("turn_costs", false) ? 1 : 0
-        	);
+            );
         
         //Assign properties argument to corresponding field
         this.properties = properties;
