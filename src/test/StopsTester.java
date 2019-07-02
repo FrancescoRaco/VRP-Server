@@ -21,7 +21,7 @@ public class StopsTester
 {
 	/**
 	 * String Builder storing a String representation of the comparison of Jsprit algorithm results
-     * with those calculated by transport service provider
+         * with those calculated by transport service provider
 	 */
 	private StringBuilder checkSB = new StringBuilder();
 	
@@ -112,7 +112,7 @@ public class StopsTester
 		algBestPathDistance = solution.getCost();
 		
 		//Get TSP tour activities list
-    	List<TourActivity> tspSolutionActivities = map.getTspSolutionActivities(startPoint, solution);
+    	        List<TourActivity> tspSolutionActivities = map.getTspSolutionActivities(startPoint, solution);
 		
 		//Assign activities list to totalProcessedStops private field
 		totalProcessedStops = tspSolutionActivities.size();
@@ -131,13 +131,13 @@ public class StopsTester
 		//in the corresponding array
 		int j = 0;
     	
-    	//Iterate over all stops processed by Jsprit algorithm
+    	        //Iterate over all stops processed by Jsprit algorithm
 		while (i < totalProcessedStops)
-    	{
-    		//Location returned by the Jsprit algorithm
+    	        {
+    			//Location returned by the Jsprit algorithm
 			String algLocationId = tspSolutionActivities.get(i).getLocation().getId();
     		
-    		//Location chosen by transport service provider
+    			//Location chosen by transport service provider
 			String providerLocationId = providerActivities.get(j);
 			
 			//If algorithm has already mistaken current provider stop, then jump to the next one
@@ -150,25 +150,25 @@ public class StopsTester
 			/*Append to checkSB the string representation of comparison */
 			checkSB.append(algLocationId).append(": ");
     		
-    		//If result is correct, then append corresponding hit string text to checkSB,
+    			//If result is correct, then append corresponding hit string text to checkSB,
 			//jump to next stop index and increase the number of hits
 			if (algLocationId.equals(providerLocationId))
-    		{
-    			checkSB.append("SCELTA CORRETTA\n\n");
-    			j++;
-    			hits++;
-    		}
-    		else
-    		{
-    			//Add current algorithm stop to wrongStop set
-    			wrongStops.add(algLocationId);
+    			{
+    				checkSB.append("SCELTA CORRETTA\n\n");
+    				j++;
+    				hits++;
+    			}
+    			else
+    			{
+    				//Add current algorithm stop to wrongStop set
+    				wrongStops.add(algLocationId);
     			
-    			//Append corresponding failure string text to checkSB
-    			checkSB.append("SCELTA SBAGLIATA (\"").append(providerLocationId).append("\" ").append(" E\' LA SCELTA CORRETTA)\n\n");
-    		}
+    				//Append corresponding failure string text to checkSB
+    				checkSB.append("SCELTA SBAGLIATA (\"").append(providerLocationId).append("\" ").append(" E\' LA SCELTA CORRETTA)\n\n");
+    			}
 			
 			i++;
-    	}
+    		}
     	
 		//Append to checkSB the statistic results of the Jsprit algorithm
 		checkSB.append("\n").append("Percentuale di fermate scelte correttamente dall\' algoritmo Jsprit: [").append(hits).
