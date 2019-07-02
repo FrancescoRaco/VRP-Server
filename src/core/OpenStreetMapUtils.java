@@ -33,9 +33,9 @@ import org.json.simple.parser.JSONParser;
  */
 public class OpenStreetMapUtils
 {
-	/**
-	 * Logger for configuring which message types are written
-	 */
+    /**
+     * Logger for configuring which message types are written
+     */
     public final static Logger log = Logger.getLogger("OpenStreeMapUtils");
 
     /**
