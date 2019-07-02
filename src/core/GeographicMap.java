@@ -47,22 +47,22 @@ public class GeographicMap
 	 */
     public static final Logger log = Logger.getLogger("GeographicMap");
 	
-    /**
+        /**
 	 * Path where to store GraphHopper graphs
 	 */
     public static final String GRAPHSPATH = ClassLoader.getSystemResource("graphs").getPath();
     
-    /**
+        /**
 	 * Path where to store Geographic maps
 	 */
     public static final String MAPSPATH = ClassLoader.getSystemResource("maps/").getPath();
     
-    /**
+        /**
 	 * Geocoding server
 	 */
     protected String geocodingServer = "http://racomaps.ns0.it/nominatim/";
     
-    /**
+        /**
 	 * File containing geographic map (OpenStreetMap format)
 	 */
 	protected String osmFile;
@@ -155,7 +155,7 @@ public class GeographicMap
 				if (cmw != null) cmw.addPathInstructions(fromId, toId, bestPathToString(path));
 				
 				//Log a message object with debug
-		        log.debug("[" + from.getId() + " - " + to.getId() + "] : " + Math.round(distance / 1000) + "km; " + (time / 1000) / 60 + "mm" + " and " + time % 60 + "s");
+		                log.debug("[" + from.getId() + " - " + to.getId() + "] : " + Math.round(distance / 1000) + "km; " + (time / 1000) / 60 + "mm" + " and " + time % 60 + "s");
 			}
 		
 		//Build the costs matrix and return it
@@ -374,9 +374,9 @@ public class GeographicMap
 		Translation tr = tm.getWithFallBack(area);
         
         //Initialize StringBuilder representation of the best path
-		StringBuilder infoBuilder = new StringBuilder().append("Tempo stimato: ");
-		infoBuilder.append((path.getTime() / 1000) / 60).append("min").append(" e ").append(path.getTime() % 60).append("s \n");
-		infoBuilder.append("Distanza stimata: ").append(Math.round(path.getDistance() / 1000)).append("km").append(" e ").append(Math.round(path.getDistance() % 1000)).append("m \n\n");
+	StringBuilder infoBuilder = new StringBuilder().append("Tempo stimato: ");
+	infoBuilder.append((path.getTime() / 1000) / 60).append("min").append(" e ").append(path.getTime() % 60).append("s \n");
+	infoBuilder.append("Distanza stimata: ").append(Math.round(path.getDistance() / 1000)).append("km").append(" e ").append(Math.round(path.getDistance() % 1000)).append("m \n\n");
         
         //If there is at least 1 instruction, iterate over the list of instructions related to the best path
         if (path.getInstructions() != null)
