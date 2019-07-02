@@ -59,19 +59,19 @@ public class TSPSolutionWrapper
 			//Add every location id to the String Builder containing a String representation
 			//of the TSP solution
 			for (int i = 0; i < SIZE; i++)
-				{
-					String thisPoint = locations.get(i);
-					sbSolution.append(thisPoint);
+			{
+				String thisPoint = locations.get(i);
+				sbSolution.append(thisPoint);
 					
-					//Until second last location, append to sbSolution the String representation
-					//of the best path between it and the next location
-					if (i < SIZE - 1)
-					{
-						sbSolution.append(":\n\n");
-						String endPoint = locations.get(i + 1);
-						sbSolution.append(cmw.getPathInstructions(thisPoint, endPoint)).append("\n\n");
-					}
+				//Until second last location, append to sbSolution the String representation
+				//of the best path between it and the next location
+				if (i < SIZE - 1)
+				{
+					sbSolution.append(":\n\n");
+					String endPoint = locations.get(i + 1);
+					sbSolution.append(cmw.getPathInstructions(thisPoint, endPoint)).append("\n\n");
 				}
+			}
 		}
 		//Assign sbSolution to the private corresponding field
 		this.sbSolution = sbSolution;
